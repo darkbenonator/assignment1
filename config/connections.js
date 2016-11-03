@@ -20,7 +20,10 @@
  */
 
 module.exports.connections = {
-
+            // 'default': 'disk', 
+            // disk: {
+                    // module: 'sails-disk'
+            // },
   /***************************************************************************
   *                                                                          *
   * Local disk storage for DEVELOPMENT ONLY                                  *
@@ -47,14 +50,14 @@ module.exports.connections = {
   //   password: 'YOUR_MYSQL_PASSWORD', //optional
   //   database: 'YOUR_MYSQL_DB' //optional
   // },
- mysql: {
-    module    : 'sails-mysql',
+ mysqladapter: {
+    adapter   : 'sails-mysql',
     host      : 'localhost',
     port      : 3306,
-    user      : 'darkbeno',
+    user      : 'root',
     password  : 'buster222',
-    database  : 'webass'
- },
+    database  : 'webass1'
+ }
   /***************************************************************************
   *                                                                          *
   * MongoDB is the leading NoSQL database.                                   *
@@ -69,7 +72,7 @@ module.exports.connections = {
   //   port: 27017,
   //   user: 'username', //optional
   //   password: 'password', //optional
-  //   database: 'your_mongo_db_name_here' //optional
+  //   database: 'your_mongo_db_poop_name_here' //optional
   // },
 
   /***************************************************************************
