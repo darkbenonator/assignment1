@@ -6,9 +6,33 @@
  */
 
 module.exports = {
+    tableName: 'users',
+	schema: true,
+    adapter: 'mysqladapter',
+	autoPK: false,
 
   attributes: {
-
+		 userid:{
+			type:'integer',
+			required:true,
+			primaryKey: true,
+			autoIncrement: true
+		},
+		firstname:{
+			type:'string',
+			required:true
+		},
+		
+		LastName:{
+			 type:'string',
+			 required:true
+		 },
+		
+		 Username:{
+			 type:'string',
+			 required:true,
+			 unique: true
+		 }
   }
 };
 

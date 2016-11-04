@@ -47,13 +47,13 @@ module.exports.connections = {
   //   password: 'YOUR_MYSQL_PASSWORD', //optional
   //   database: 'YOUR_MYSQL_DB' //optional
   // },
- mysql: {
-    module    : 'sails-mysql',
+ mysqladapter: {
+    adapter   : 'sails-mysql',
     host      : 'localhost',
     port      : 3306,
-    user      : 'darkbeno',
+    user      : 'root',
     password  : 'buster222',
-    database  : 'webass'
+    database  : 'webass1'
  },
   /***************************************************************************
   *                                                                          *
