@@ -14,9 +14,9 @@ module.exports = {
   attributes: {
 		 userid:{
 			type:'integer',
-			required:true,
 			primaryKey: true,
-			autoIncrement: true
+			autoIncrement: true,
+			unique: true
 		},
 		firstname:{
 			type:'string',
