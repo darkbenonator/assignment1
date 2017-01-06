@@ -40,6 +40,27 @@ module.exports = {
 			if(err) return next(err);
 			res.redirect('users/show/' + updated[0].userid);
 		});
+	},
+	
+	searchPage : function(req,res){
+		res.view();
+	},
+	
+	
+//elasticsearch
+    search : function(req, res){
+		var searchQuery = req.param('searchTerm');
+		sails.log(searchQuery);
+		Users.find({ 
+			or :[ 
+					{ like: { firstname: '%'+ searchQuery +'%' } }, { like: { LastName : '%'+searchQuery+'%' }}, { like: { Username : '%'+searchQuery+'%' } } 
+				] 
+		} , function ( err, users ){
+			sails.log(err);
+			sails.log(users);
+			return res.json(users);
+		});
+
 	}	
 };
 

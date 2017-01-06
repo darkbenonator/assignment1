@@ -1,0 +1,61 @@
+
+<script>
+$(document).ready(function () {
+    $("#SearchForm").on("submit", function(e){
+		e.preventDefault();
+		return false;
+	});
+	
+    var optionsTop = {
+        callback: function (value) { alert("hi")},
+        wait: 1000,
+        highlight: true,
+        captureLength: 0
+    }
+	
+	function doneTyping(value) {
+        $.ajax({
+            url: "/users/search",
+			dataType: 'json',
+            data: { searchTerm : value },
+            success: function (ret) {
+				$.each(ret, function( index, value ) {
+					$('#bodyTable').append("<tr><td>" + value["firstname"] +"</td><td>"+ value["LastName"] +"</td><td>"+ value["Username"] + "</td><td>"+ "<button type='button' class='btn btn-success'><a href='/users/show/"+value["userid"]+"'> Show User </a></button>" +"</td></tr>");
+				});
+			}
+        });
+    }
+	
+	$('#text').typeWatch({
+		  callback:function(value){
+			doneTyping(value);
+		 },
+		 wait:750,
+	  highlight:false
+	});
+});
+</script>
+<section>
+<div class="container">
+	<form id="SearchForm" action="/users/search" >
+		<input type="text"  name="Search" id="text" placeholder="search..">
+		<input type="submit" value="Submit User">
+	</form>
+</div>
+</section>
+<section>
+	<div class="container">
+		<h2>Search Results</h2>
+		<table class="table">
+    <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Username</th>
+      </tr>
+    </thead>
+    <tbody id="bodyTable">
+    </tbody>
+  </table>
+	</div>
+</section>
