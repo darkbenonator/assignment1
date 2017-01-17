@@ -1,12 +1,29 @@
-<h1>User</h1>
+<div class="container">
+	<div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+			<h1 class="text-center"><%= Users.Username %></h1>
 
-<form action="/users/update" method="POST">
-	<input type="hidden" name="userid" value="<%= Users.userid %>" >
-	<input type="text"  name="firstname" value="<%= Users.firstname %>" >
-	<input type="text"  name="LastName" value="<%= Users.LastName %>">
-	<input type="text"  name="Username" value="<%= Users.Username %>">
-	<input type="submit" value="Submit User">
-</form>
+			<form action="/users/update" method="POST">
+				<input type="hidden" name="userid" value="<%= Users.userid %>" >
+				<div class="form-group row">
+					<label for="firstname">First Name: </label>
+					<input class="form-control" type="text" id="firstname"  name="firstname" value="<%= Users.firstname %>" >
+				</div>
+				<div class="form-group row">
+					<label for="lastname">Last Name: </label>
+					<input class="form-control" type="text" id="lastname"  name="LastName" value="<%= Users.LastName %>">
+				</div>
+				<div class="form-group row">
+					<label for="username">First Name: </label>
+					<input class="form-control" type="text"  name="Username" id="username" value="<%= Users.Username %>">
+				</div>
+				<div class="col-sm-offset-5">
+					<input class="btn btn-primary" type="submit" value="Update User">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
 
 
 
