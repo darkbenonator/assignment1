@@ -38,6 +38,9 @@
   </head>
 
   <body>
+      <% if (req.session.me) { %>
+    <a href="/users/logout">Logout</a>
+    <% } %>
     <%- body %>
 
 
