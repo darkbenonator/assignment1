@@ -1,10 +1,11 @@
 /**
  * Users.js
  *
- * @description :: TODO: You might write a short summary of how this model works and what it represents here.
- * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
+ * @description :: Represents the Users table in the database 
  */
-
+ //BCryptJS for password encryption
+var bcrypt = require('bcryptjs');
+ 
 module.exports = {
     tableName: 'users',
 	schema: true,
@@ -12,7 +13,7 @@ module.exports = {
 	autoPK: false,
 
   attributes: {
-		 userid:{
+		userid:{
 			type:'integer',
 			primaryKey: true,
 			autoIncrement: true,
@@ -28,11 +29,33 @@ module.exports = {
 			 required:true
 		 },
 		
-		 Username:{
+		Username:{
 			 type:'string',
 			 required:true,
 			 unique: true
-		 }
-  }
-};
+		 },
+	    password: {
+		    type: 'string',
+		    required: true
+		}
+    },
+  /**
+   * Check validness of a login using the provided inputs. Checks the password against the inputted password using Bcrypt. if correct assigns the user. 
+   *
+   * @param  {inputs}   inputs
+   *                     • Username    {String}
+   *                     • password {String}
+   * @param  {Function} cb
+   */
+  attemptLogin: function (inputs, cb) {
+	   	Users.findOne({
+			Username: inputs.Username,
+	    }, function usersCreated(err, Users){
+				var users  = null;
+				if(bcrypt.compareSync(inputs.password, Users.password) == true) users = Users;
+				cb(users)
+			}
+		);
+    }
+ };
 
